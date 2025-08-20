@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Site On - Aprenda a Criar Sites e Páginas de Vendas</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Site On">
+    <meta name="description" content="Aprenda a criar sites profissionais e páginas de vendas que convertem">
+    
+    <!-- Favicon and PWA Icons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192' fill='%236366f1'%3E%3Crect width='192' height='192' fill='%23ffffff'/%3E%3Cpath d='M96,20A76,76 0 0,0 20,96A76,76 0 0,0 96,172A76,76 0 0,0 172,96A76,76 0 0,0 96,20M96,36A60,60 0 0,1 156,96A60,60 0 0,1 96,156A60,60 0 0,1 36,96A60,60 0 0,1 96,36M96,52A44,44 0 0,0 52,96A44,44 0 0,0 96,140A44,44 0 0,0 140,96A44,44 0 0,0 96,52M96,68A28,28 0 0,1 124,96A28,28 0 0,1 96,124A28,28 0 0,1 68,96A28,28 0 0,1 96,68M96,84A12,12 0 0,0 84,96A12,12 0 0,0 96,108A12,12 0 0,0 108,96A12,12 0 0,0 96,84Z'/%3E%3C/svg%3E">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlNpdGUgT24gLSBBcHJlbmRhIGEgQ3JpYXIgU2l0ZXMiLAogICJzaG9ydF9uYW1lIjogIlNpdGUgT24iLAogICJkZXNjcmlwdGlvbiI6ICJBcHJlbmRhIGEgY3JpYXIgc2l0ZXMgcHJvZmlzc2lvbmFpcyBlIHDDoWdpbmFzIGRlIHZlbmRhcyBxdWUgY29udmVydGVtIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMxMTE4MjciLAogICJ0aGVtZV9jb2xvciI6ICIjNjM2NmYxIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxOTIgMTkyJyBmaWxsPSclMjM2MzY2ZjEnJTNFJTNDcmVjdCB3aWR0aD0nMTkyJyBoZWlnaHQ9JzE5MicgZmlsbD0nJTIzZmZmZmZmJy8lM0UlM0NwYXRoIGQ9J005NiwyMEE3Niw3NiAwIDAsMCAyMCw5NkE3Niw3NiAwIDAsMCA5NiwxNzJBNzYsNzYgMCAwLDAgMTcyLDk2QTc2LDc2IDAgMCwwIDk2LDIwTTk2LDM2QTYwLDYwIDAgMCwxIDE1Niw5NkE2MCw2MCAwIDAsMSA5NiwxNTZBNjAsNjAgMCAwLDEgMzYsOTZBNjAsNjAgMCAwLDEgOTYsMzZNOTYsNTJBNDQsNDQgMCAwLDAgNTIsOTZBNDQsNDQgMCAwLDAgOTYsMTQwQTQ0LDQ0IDAgMCwwIDE0MCw5NkE0NCw0NCAwIDAsMCA5Niw1Mk05Niw2OEEyOCwyOCAwIDAsMSAxMjQsOTZBMjgsMjggMCAwLDEgOTYsMTI0QTI4LDI4IDAgMCwxIDY4LDk2QTI4LDI4IDAgMCwxIDk2LDY4TTk2LDg0QTEyLDEyIDAgMCwwIDg0LDk2QTEyLDEyIDAgMCwwIDk2LDEwOEExMiwxMiAwIDAsMCAxMDgsOTZBMTIsMTIgMCAwLDAgOTYsODRaJy8lM0UlM0Mvc3ZnJTNFIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInIGZpbGw9JyUyMzYzNjZmMSclM0UlM0NyZWN0IHdpZHRoPSc1MTInIGhlaWdodD0nNTEyJyBmaWxsPSclMjNmZmZmZmYnLyUzRSUzQ3BhdGggZD0nTTI1Niw1M0EyMDMsMjAzIDAgMCwwIDUzLDI1NkEyMDMsMjAzIDAgMCwwIDI1Niw0NTlBMjAzLDIwMyAwIDAsMCA0NTksMjU2QTIwMywyMDMgMCAwLDAgMjU2LDUzTTI1Niw5N0ExNTksMTU5IDAgMCwxIDQxNSwyNTZBMTU5LDE1OSAwIDAsMSAyNTYsNDE1QTE1OSwxNTkgMCAwLDEgOTcsMjU2QTE1OSwxNTkgMCAwLDEgMjU2LDk3TTI1NiwxNDFBMTE1LDExNSAwIDAsMCAxNDEsMjU2QTExNSwxMTUgMCAwLDAgMjU2LDM3MUExMTUsMTE1IDAgMCwwIDM3MSwyNTZBMTE1LDExNSAwIDAsMCAyNTYsMTQxTTI1NiwxODVBNzEsNzEgMCAwLDEgMzI3LDI1NkE3MSw3MSAwIDAsMSAyNTYsMzI3QTcxLDcxIDAgMCwxIDE4NSwyNTZBNzEsNzEgMCAwLDEgMjU2LDE4NU0yNTYsMjI5QTI3LDI3IDAgMCwwIDIyOSwyNTZBMjcsMjcgMCAwLDAgMjU2LDI4M0EyNywyNyAwIDAsMCAyODMsMjU2QTI3LDI3IDAgMCwwIDI1NiwyMjlaJy8lM0UlM0Mvc3ZnJTNFIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#06b6d4'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .mobile-text-sm { font-size: 0.875rem; }
+            .mobile-text-base { font-size: 1rem; }
+            .mobile-text-lg { font-size: 1.125rem; }
+            .mobile-text-xl { font-size: 1.25rem; }
+            .mobile-text-2xl { font-size: 1.5rem; }
+            .mobile-text-3xl { font-size: 1.875rem; }
+            .mobile-text-4xl { font-size: 2.25rem; }
+            .mobile-py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+            .mobile-py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+            .mobile-px-4 { padding-left: 1rem; padding-right: 1rem; }
+            .mobile-mb-4 { margin-bottom: 1rem; }
+            .mobile-mb-6 { margin-bottom: 1.5rem; }
+            .mobile-mb-8 { margin-bottom: 2rem; }
+        }
+        
+        /* Touch-friendly buttons */
+        .touch-button {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <!-- Header -->
+    <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z"/>
+                    </svg>
+                    <div class="text-xl sm:text-2xl font-bold text-white">Site On</div>
+                </div>
+                <button onclick="scrollToSection('comprar')" class="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-white hover:to-white hover:text-black text-white px-3 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 touch-button">
+                    <span class="hidden sm:inline">🚀 QUERO APRENDER AGORA</span>
+                    <span class="sm:hidden">🚀 COMPRAR</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção 1: Hero com Vídeo de Vendas -->
+    <section class="bg-gradient-to-br from-gray-800 via-purple-900 to-indigo-900 text-white py-12 sm:py-20">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight text-white" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8), -1px -1px 2px rgba(255,255,255,0.3);">
+                Domine a Arte de Criar Sites e<br class="hidden sm:block">
+                <span class="text-white">Páginas de Vendas sem gastar nada</span>
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto opacity-90 px-2">
+                Aprenda do zero como construir sites profissionais e páginas de vendas que convertem, mesmo sem conhecimento técnico nenhum e sem precisar gastar quase nada
+            </p>
+            
+            <!-- Video Player -->
+            <div class="max-w-4xl mx-auto mb-6 sm:mb-8 px-2">
+                <div class="bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gradient-to-r from-pink-500 to-purple-500" style="border-image: linear-gradient(45deg, #ec4899, #8b5cf6) 1;">
+                    <iframe 
+                        class="w-full aspect-video" 
+                        src="https://www.youtube.com/embed/QduYd8tWr9s" 
+                        title="Site On - Vídeo de Vendas" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-2">
+                <a href="https://pay.cakto.com.br/iuzn4zh" target="_blank" class="block w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-white hover:to-white hover:text-black text-white px-6 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-bold transition-all duration-300 shadow-lg touch-button">
+                    🚀 QUERO APRENDER AGORA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 2: Exemplos -->
+    <section class="py-12 sm:py-20 bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-16 text-white">EXEMPLOS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+                <div class="overflow-hidden rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105" style="width: 330px; height: 560px; margin: 0 auto;">
+                    <img 
+                        src="https://d1yei2z3i6k35z.cloudfront.net/5785807/67ca0952d86ca_screencapture-sites-google-view-maqert-aa-2025-03-06-13_32_24.jpg" 
+                        alt="Exemplo de site 1" 
+                        class="w-full h-full object-cover"
+                        onerror="this.style.display='none'"
+                    >
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105" style="width: 330px; height: 560px; margin: 0 auto;">
+                    <img 
+                        src="https://d1yei2z3i6k35z.cloudfront.net/5785807/67ca09673cbc0_screencapture-sites-google-view-restinho-res-2025-03-06-13_12_59.jpg" 
+                        alt="Exemplo de site 2" 
+                        class="w-full h-full object-cover"
+                        onerror="this.style.display='none'"
+                    >
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105" style="width: 330px; height: 560px; margin: 0 auto;">
+                    <img 
+                        src="https://d1yei2z3i6k35z.cloudfront.net/5785807/67ca09937f804_screencapture-sites-google-view-criesuaarte-banners-2025-03-06-13_10_27.jpg" 
+                        alt="Exemplo de site 3" 
+                        class="w-full h-full object-cover"
+                        onerror="this.style.display='none'"
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 3: O Que Você Vai Aprender -->
+    <section id="aprender" class="py-12 sm:py-20 bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-16 text-white">O Que Você Vai Aprender</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                <div class="card-hover bg-gradient-to-br from-gray-700 to-gray-600 p-6 sm:p-8 rounded-xl">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">🎨</div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Design Profissional</h3>
+                    <p class="text-sm sm:text-base text-gray-300">Aprenda os princípios de design para criar sites visualmente atraentes e profissionais</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-700 to-gray-600 p-6 sm:p-8 rounded-xl">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">💻</div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Desenvolvimento Web</h3>
+                    <p class="text-sm sm:text-base text-gray-300">Domine HTML, CSS e JavaScript de forma prática e sem complicação</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-700 to-gray-600 p-6 sm:p-8 rounded-xl">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">📈</div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Páginas que Convertem</h3>
+                    <p class="text-sm sm:text-base text-gray-300">Crie páginas de vendas otimizadas que transformam visitantes em clientes</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-700 to-gray-600 p-6 sm:p-8 rounded-xl">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">📱</div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Sites Responsivos</h3>
+                    <p class="text-sm sm:text-base text-gray-300">Desenvolva sites que funcionam perfeitamente em todos os dispositivos</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-700 to-gray-600 p-6 sm:p-8 rounded-xl">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">🔧</div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Ferramentas Modernas</h3>
+                    <p class="text-sm sm:text-base text-gray-300">Utilize as melhores ferramentas e plataformas do mercado</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-700 to-gray-600 p-6 sm:p-8 rounded-xl">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">💰</div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Monetização</h3>
+                    <p class="text-sm sm:text-base text-gray-300">Aprenda a transformar seus conhecimentos em uma fonte de renda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 4: Seu Site On -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Seu Site On</h2>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg text-gray-300 leading-relaxed mb-8">
+                    Transforme suas ideias em sites profissionais, sem gastar nada! Com nosso guia, você aprenderá passo a passo a criar páginas web de forma simples e rápida, utilizando ferramentas gratuitas e intuitivas. Desde a escolha do domínio até a otimização para mecanismos de busca, vamos te acompanhar em cada etapa do processo. Descubra como é fácil criar sua presença online, seja para um blog, portfólio ou loja virtual. Economize tempo e dinheiro enquanto desenvolve habilidades valiosas que abrirão novas oportunidades no mundo digital.
+                </p>
+                <button onclick="scrollToSection('comprar')" class="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-white hover:to-white hover:text-black text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 shadow-lg">
+                    🚀 QUERO APRENDER AGORA
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 5: O Que Você Ganha -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">O QUE VOCÊ GANHA</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Sites Grátis -->
+                <div class="text-center">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-green-500 rounded-full flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">SITES GRÁTIS</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Neste treinamento, você aprenderá a criar sites incríveis de forma gratuita, utilizando ferramentas acessíveis e intuitivas.
+                    </p>
+                </div>
+                
+                <!-- Tempo -->
+                <div class="text-center">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-blue-500 rounded-full flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">TEMPO</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Economize tempo valioso com um método eficiente e prático. Ganhe acesso a uma área de membros exclusiva e a um grupo no WhatsApp para suporte e troca de experiências.
+                    </p>
+                </div>
+                
+                <!-- + Resultados -->
+                <div class="text-center">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-purple-500 rounded-full flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">+ RESULTADOS</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Tire dúvidas e compartilhe experiências. Desenvolva habilidades valiosas e veja suas ideias ganharem vida, conquistando os resultados que você sempre desejou!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 6: Seu Mentor -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-12 text-white">Conheça Seu Mentor</h2>
+                <div class="bg-gray-800 rounded-2xl shadow-xl p-12">
+                    <div class="w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full shadow-2xl border-4" style="border-image: linear-gradient(45deg, #ec4899, #8b5cf6) 1; border-style: solid;">
+                        <img 
+                            src="https://d1yei2z3i6k35z.cloudfront.net/5785807/67ca0edb51949_author-of-mazzuestore-blog.jpg" 
+                            alt="Rogério Ramos" 
+                            class="w-full h-full object-cover"
+                            onerror="this.style.display='none'"
+                        >
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">Rogério Ramos</h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Conheça Rogério Ramos, um especialista em tecnologia com anos de experiência. Ele desenvolveu um método prático e fácil para criar sites incríveis utilizando o Google Sites. No curso, você aprenderá passo a passo e contará com o suporte exclusivo de Rogério através de uma área de membros e um grupo no WhatsApp. Transforme suas ideias em realidade com um mentor dedicado e uma comunidade de apoio!
+                    </p>
+                    <div class="grid md:grid-cols-4 gap-6 text-center">
+                        <div>
+                            <div class="text-3xl font-bold text-primary">400+</div>
+                            <div class="text-gray-300">Mais de 400 alunos</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-primary">+14</div>
+                            <div class="text-gray-300">aulas exclusivas</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-primary">297</div>
+                            <div class="text-gray-300">Sites criados</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-primary">12h+</div>
+                            <div class="text-gray-300">+12 horas de conteúdo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 7: O Que Nossos Alunos Dizem -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">O Que Nossos Alunos Dizem</h2>
+            <div class="relative max-w-6xl mx-auto">
+                <!-- Carrossel Container -->
+                <div class="overflow-hidden rounded-xl">
+                    <div id="testimonials-container" class="flex transition-transform duration-500 ease-in-out">
+                        <!-- Slide 1 -->
+                        <div class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+                            <!-- Depoimento 1 -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">MC</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Maria Clara</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"Em 3 meses já estava criando sites para clientes e faturando R$ 5.000/mês. O curso mudou minha vida!"</p>
+                            </div>
+                            <!-- Depoimento 2 -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">RS</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Roberto Silva</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"Saí do zero absoluto e hoje tenho minha própria agência digital. Método incrível!"</p>
+                            </div>
+                            <!-- Depoimento 3 -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">AS</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Ana Santos</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"Consegui criar o site da minha empresa e aumentei as vendas em 300%. Recomendo!"</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+                            <!-- Depoimento 4 -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">JC</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">João Carlos</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"Nunca imaginei que seria tão fácil! Criei meu primeiro site em uma semana e já estou recebendo propostas de trabalho."</p>
+                            </div>
+                            <!-- Depoimento 5 -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">LF</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Lucia Fernandes</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"O suporte é excepcional! Sempre que tive dúvidas, fui atendida rapidamente. Hoje tenho 3 sites no ar!"</p>
+                            </div>
+                            <!-- Depoimento 6 -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">PM</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Pedro Martins</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"Investimento que mais valeu a pena na minha vida! Saí de funcionário para empreendedor digital em 6 meses."</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+                            <!-- Depoimento 7 -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">CS</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Carla Souza</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"Método simples e eficaz! Consegui criar um portfólio incrível e dobrei minha renda como freelancer."</p>
+                            </div>
+                            <!-- Depoimento 8 -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">FS</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Fernando Santos</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"Transformei meu hobby em profissão! Hoje trabalho criando sites e tenho uma renda extra de R$ 3.000/mês."</p>
+                            </div>
+                            <!-- Depoimento 1 repetido -->
+                            <div class="bg-gray-700 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold">MC</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Maria Clara</h4>
+                                        <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 italic">"Em 3 meses já estava criando sites para clientes e faturando R$ 5.000/mês. O curso mudou minha vida!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controles de Navegação -->
+                <button onclick="previousTestimonial()" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button onclick="nextTestimonial()" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Indicadores -->
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button id="indicator-0" onclick="goToTestimonial(0)" class="w-3 h-3 bg-white bg-opacity-100 rounded-full transition-all duration-300"></button>
+                    <button id="indicator-1" onclick="goToTestimonial(1)" class="w-3 h-3 bg-white bg-opacity-50 rounded-full transition-all duration-300"></button>
+                    <button id="indicator-2" onclick="goToTestimonial(2)" class="w-3 h-3 bg-white bg-opacity-50 rounded-full transition-all duration-300"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 8: Nosso Treinamento + Garantia -->
+    <section class="py-20 bg-gradient-to-br from-gray-800 via-purple-900 to-indigo-900 text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">NOSSO TREINAMENTO</h2>
+            <div class="max-w-4xl mx-auto">
+                <!-- Área de Membros -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white border-opacity-20 mb-20">
+                    <h3 class="text-2xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-pink-500 bg-clip-text text-transparent text-center">
+                        Área de membros exclusiva com grupo no WhatsApp
+                    </h3>
+                    <p class="text-lg text-gray-200 leading-relaxed mb-8 text-center">
+                        Seja parte da nossa comunidade exclusiva e aproveite os benefícios de estar conectado! Com a nossa área de membros exclusiva, você terá acesso a um grupo dedicado no WhatsApp, onde poderá interagir com outros membros, compartilhar suas experiências, tirar dúvidas e obter suporte personalizado.
+                    </p>
+                    <div class="text-center">
+                        <button onclick="openVideoPopup()" class="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-white hover:to-white hover:text-black text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 shadow-lg">
+                            🎥 Ver Demonstração
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Título da Garantia -->
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">
+                    GARANTIA
+                </h2>
+
+                <!-- Garantia -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white border-opacity-20">
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-6">
+                            <svg class="w-full h-full text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,17.4 15.4,18 14.8,18H9.2C8.6,18 8,17.4 8,16V13C8,12.4 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                            Garantia Incondicional de 30 Dias
+                        </h4>
+                        <p class="text-lg mb-6 opacity-90">
+                            Estamos tão confiantes na qualidade do nosso treinamento que oferecemos uma garantia total. 
+                            Se você não ficar 100% satisfeito em 30 dias, devolvemos todo o seu dinheiro.
+                        </p>
+                        <div class="bg-white bg-opacity-10 rounded-xl p-6">
+                            <h5 class="text-lg font-bold mb-4">Nossa Promessa Para Você:</h5>
+                            <ul class="text-left space-y-2">
+                                <li class="flex items-center"><span class="mr-2 text-green-400">✅</span> Reembolso total em até 30 dias</li>
+                                <li class="flex items-center"><span class="mr-2 text-green-400">✅</span> Sem perguntas ou burocracias</li>
+                                <li class="flex items-center"><span class="mr-2 text-green-400">✅</span> Processo 100% digital</li>
+                                <li class="flex items-center"><span class="mr-2 text-green-400">✅</span> Suporte dedicado</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 9: Perguntas Frequentes -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Perguntas Frequentes</h2>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(1)" class="w-full p-6 text-left font-semibold text-white hover:bg-gray-700 flex justify-between items-center">
+                        Preciso ter conhecimento técnico?
+                        <span id="icon-1" class="transform transition-transform">+</span>
+                    </button>
+                    <div id="faq-1" class="hidden p-6 pt-0 text-gray-300">
+                        Não, ensino do zero como criar sites profissionais usando ferramentas intuitivas e gratuitas. O curso foi projetado para iniciantes absolutos, com linguagem simples e passo a passo detalhado.
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(2)" class="w-full p-6 text-left font-semibold text-white hover:bg-gray-700 flex justify-between items-center">
+                        Quanto tempo para acesso?
+                        <span id="icon-2" class="transform transition-transform">+</span>
+                    </button>
+                    <div id="faq-2" class="hidden p-6 pt-0 text-gray-300">
+                        O acesso é imediato após a confirmação do pagamento. Você receberá um e-mail com as instruções para acessar a área de membros em até 5 minutos após a compra.
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(3)" class="w-full p-6 text-left font-semibold text-white hover:bg-gray-700 flex justify-between items-center">
+                        Posso vender sites criados?
+                        <span id="icon-3" class="transform transition-transform">+</span>
+                    </button>
+                    <div id="faq-3" class="hidden p-6 pt-0 text-gray-300">
+                        Sim, você terá direitos completos sobre os sites que criar. Muitos alunos oferecem serviços de criação de sites como fonte de renda adicional após concluir o curso.
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(4)" class="w-full p-6 text-left font-semibold text-white hover:bg-gray-700 flex justify-between items-center">
+                        Como é o suporte?
+                        <span id="icon-4" class="transform transition-transform">+</span>
+                    </button>
+                    <div id="faq-4" class="hidden p-6 pt-0 text-gray-300">
+                        Oferecemos suporte direto no grupo exclusivo de WhatsApp para alunos e e-mail, onde você pode tirar dúvidas e receber feedback do mentor e da comunidade. Respostas em até 72h úteis.
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(5)" class="w-full p-6 text-left font-semibold text-white hover:bg-gray-700 flex justify-between items-center">
+                        Acesso vitalício mesmo?
+                        <span id="icon-5" class="transform transition-transform">+</span>
+                    </button>
+                    <div id="faq-5" class="hidden p-6 pt-0 text-gray-300">
+                        Sim, todas atualizações inclusas! Você terá acesso permanente à plataforma do curso, incluindo todas as melhorias e novos conteúdos que forem adicionados no futuro, sem custos adicionais.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 10: Compre Agora -->
+    <section id="comprar" class="py-20 bg-gradient-to-br from-gray-800 via-purple-900 to-indigo-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-12">Transforme Sua Vida Digital Hoje!</h2>
+            
+            <!-- Caixa Super Moderna Unificada -->
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-2xl border border-white border-opacity-20">
+                    <!-- Preço Principal -->
+                    <div class="text-center mb-8">
+                        <div class="text-lg opacity-75 mb-2">De R$ 297 por apenas</div>
+                        <div class="text-7xl font-bold mb-2 bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">R$ 47</div>
+                        <div class="text-lg opacity-75">à vista no PIX</div>
+                    </div>
+                    
+                    <!-- Divisor Elegante -->
+                    <div class="flex items-center my-8">
+                        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-30"></div>
+                        <span class="px-4 text-sm opacity-75">O que está incluído</span>
+                        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-30"></div>
+                    </div>
+                    
+                    <!-- Itens Incluídos em Cards -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-8">
+                        <div class="bg-white bg-opacity-5 rounded-xl p-4 flex items-center">
+                            <span class="mr-3 text-green-400">✅</span>
+                            <span>+40 horas de vídeo aulas</span>
+                        </div>
+                        <div class="bg-white bg-opacity-5 rounded-xl p-4 flex items-center">
+                            <span class="mr-3 text-green-400">✅</span>
+                            <span>Projetos práticos</span>
+                        </div>
+                        <div class="bg-white bg-opacity-5 rounded-xl p-4 flex items-center">
+                            <span class="mr-3 text-green-400">✅</span>
+                            <span>Templates profissionais</span>
+                        </div>
+                        <div class="bg-white bg-opacity-5 rounded-xl p-4 flex items-center">
+                            <span class="mr-3 text-green-400">✅</span>
+                            <span>Suporte no Telegram</span>
+                        </div>
+                        <div class="bg-white bg-opacity-5 rounded-xl p-4 flex items-center">
+                            <span class="mr-3 text-green-400">✅</span>
+                            <span>Certificado de conclusão</span>
+                        </div>
+                        <div class="bg-white bg-opacity-5 rounded-xl p-4 flex items-center">
+                            <span class="mr-3 text-green-400">✅</span>
+                            <span>Acesso vitalício</span>
+                        </div>
+                        <div class="bg-white bg-opacity-5 rounded-xl p-4 flex items-center">
+                            <span class="mr-3 text-green-400">✅</span>
+                            <span>Atualizações gratuitas</span>
+                        </div>
+                        <div class="bg-white bg-opacity-5 rounded-xl p-4 flex items-center">
+                            <span class="mr-3 text-green-400">✅</span>
+                            <span>Garantia de 30 dias</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Botão CTA Super Moderno -->
+                    <div class="text-center">
+                        <a href="https://pay.cakto.com.br/iuzn4zh" target="_blank" class="inline-block bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-400 hover:via-purple-400 hover:to-indigo-400 text-white px-12 py-5 rounded-full text-xl font-bold transition-all duration-300 shadow-2xl transform hover:scale-105 hover:shadow-pink-500/25 mb-4">
+                            🚀 QUERO APRENDER AGORA
+                        </a>
+                        <p class="text-sm opacity-75">Pagamento 100% seguro • Acesso imediato</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Popup -->
+    <div id="videoPopup" class="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center hidden">
+        <div class="relative max-w-4xl w-full mx-4">
+            <button onclick="closeVideoPopup()" class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors">
+                ✕ Fechar
+            </button>
+            <div class="bg-black rounded-lg overflow-hidden shadow-2xl">
+                <video id="popupVideo" class="w-full aspect-video" controls>
+                    <source src="https://d1yei2z3i6k35z.cloudfront.net/5785807/67d9e420566be_videopopupFeitocomoClipchamp.mp4" type="video/mp4">
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5511999999999?text=Olá%20como%20adquiro%20o%20treinamento?" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 z-50 hover:scale-110">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.700"/>
+        </svg>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-2xl font-bold mb-4">Site On</div>
+            <p class="text-gray-400 mb-6">Transformando vidas através da educação digital</p>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="text-gray-400 hover:text-white">Termos de Uso</a>
+                <a href="#" class="text-gray-400 hover:text-white">Política de Privacidade</a>
+                <a href="#" class="text-gray-400 hover:text-white">Contato</a>
+            </div>
+            <p class="text-gray-500 text-sm">© 2024 Site On. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleFAQ(id) {
+            const faq = document.getElementById(`faq-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (faq.classList.contains('hidden')) {
+                faq.classList.remove('hidden');
+                icon.textContent = '−';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                faq.classList.add('hidden');
+                icon.textContent = '+';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Carrossel de Depoimentos
+        let currentTestimonial = 0;
+        const totalTestimonials = 3; // 3 slides com 3 depoimentos cada
+
+        function updateTestimonialPosition() {
+            const container = document.getElementById('testimonials-container');
+            const translateX = -currentTestimonial * 100;
+            container.style.transform = `translateX(${translateX}%)`;
+            
+            // Atualizar indicadores
+            for (let i = 0; i < totalTestimonials; i++) {
+                const indicator = document.getElementById(`indicator-${i}`);
+                if (indicator) {
+                    if (i === currentTestimonial) {
+                        indicator.classList.remove('bg-opacity-50');
+                        indicator.classList.add('bg-opacity-100');
+                    } else {
+                        indicator.classList.remove('bg-opacity-100');
+                        indicator.classList.add('bg-opacity-50');
+                    }
+                }
+            }
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            updateTestimonialPosition();
+        }
+
+        function previousTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+            updateTestimonialPosition();
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            updateTestimonialPosition();
+        }
+
+        // Auto-play do carrossel
+        setInterval(nextTestimonial, 5000);
+
+        // Inicializar carrossel
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTestimonialPosition();
+        });
+
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                const swCode = `
+                    const CACHE_NAME = 'site-on-v1';
+                    const urlsToCache = [
+                        '/',
+                        'https://cdn.tailwindcss.com',
+                        'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap'
+                    ];
+
+                    self.addEventListener('install', function(event) {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(function(cache) {
+                                    return cache.addAll(urlsToCache);
+                                })
+                        );
+                    });
+
+                    self.addEventListener('fetch', function(event) {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(function(response) {
+                                    if (response) {
+                                        return response;
+                                    }
+                                    return fetch(event.request);
+                                }
+                            )
+                        );
+                    });
+                `;
+                
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install button after 3 seconds
+            setTimeout(() => {
+                if (deferredPrompt) {
+                    const installBanner = document.createElement('div');
+                    installBanner.innerHTML = `
+                        <div class="fixed bottom-4 left-4 right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-lg shadow-lg z-50 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z"/>
+                                </svg>
+                                <span class="text-sm font-semibold">Instalar Site On</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="installPWA()" class="bg-white text-purple-600 px-3 py-1 rounded text-sm font-semibold">Instalar</button>
+                                <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-white opacity-75 hover:opacity-100">✕</button>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(installBanner);
+                }
+            }, 3000);
+        });
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        // Funções do popup de vídeo
+        function openVideoPopup() {
+            const popup = document.getElementById('videoPopup');
+            const video = document.getElementById('popupVideo');
+            popup.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            video.currentTime = 0;
+            video.play();
+        }
+
+        function closeVideoPopup() {
+            const popup = document.getElementById('videoPopup');
+            const video = document.getElementById('popupVideo');
+            popup.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            video.pause();
+        }
+
+        // Fechar popup ao clicar fora do vídeo
+        document.getElementById('videoPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoPopup();
+            }
+        });
+
+        // Fechar popup com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoPopup();
+            }
+        });
+
+        // Smooth scroll para links internos
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    scrollToSection(targetId);
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'971e1e5956ecf1de',t:'MTc1NTY1MzM1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
